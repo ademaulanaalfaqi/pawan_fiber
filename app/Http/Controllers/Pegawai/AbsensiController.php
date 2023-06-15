@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Pegawai;
 
-use App\Http\Controllers\Controller;
 use App\Models\Absensi;
 use Illuminate\Http\Request;
+use App\Models\LokasiAbsensi;
+use App\Http\Controllers\Controller;
+use App\Models\DataPegawai;
+use Carbon\Carbon;
 
 class AbsensiController extends Controller
 {
@@ -23,26 +26,98 @@ class AbsensiController extends Controller
      */
     public function create()
     {
-        return view('_.pegawai.absensi.create');
+        $location = LokasiAbsensi::first();
+        $data ['latitude'] = $location->latitude;
+        $data ['longitude'] = $location->longitude;
+        return view('_.pegawai.absensi.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
+    public function calculateDistance($latitude1, $longitude1, $latitude2, $longitude2)
+    {
+
+        $earthRadius = 6371; // Radius bumi dalam kilometer
+
+        $latDiff = deg2rad($latitude2 - $latitude1);
+        $lonDiff = deg2rad($longitude2 - $longitude1);
+
+        $a = sin($latDiff / 2) * sin($latDiff / 2) +
+            cos(deg2rad($latitude1)) * cos(deg2rad($latitude2)) *
+            sin($lonDiff / 2) * sin($lonDiff / 2);
+
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+
+        $distance = $earthRadius * $c;
+
+        return $distance;
+    }
+
     public function store(Request $request)
     {
-        $absensi = new Absensi;
-        $absensi->nama = request()->user()->nama;
-        $absensi->id_user = request()->user()->id;  
-        $absensi->latitude = request('latitude');
-        $absensi->longitude = request('longitude');
-        $absensi->istirahat = 1;
-        $absensi->pulang = 1;
-        $absensi->handleUploadFoto();
-        $absensi->save();
+        $latitude = $request->input('latitude');
+        $longitude = $request->input('longitude');
 
-        return redirect('pegawai/absensi');
+        $lokasireferensi = LokasiAbsensi::all();
+
+        $adayangmasukradius = false;
+
+        foreach ($lokasireferensi as $lokasi) {
+            $distance = $this->calculateDistance($latitude, $longitude, $lokasi->latitude, $lokasi->longitude);
+            if ($distance <= $lokasi->radius) {
+                $adayangmasukradius = true;
+                break;
+            }          
+        }
+
+        if ($adayangmasukradius) {
+            $jamDatang = Carbon::now()->toTimeString();
+            if (Carbon::parse($jamDatang)->lessThan('07:00:00')) {
+                $absensi = new Absensi;
+                $absensi->nama = request()->user()->nama;
+                $absensi->id_user = request()->user()->id;  
+                $absensi->latitude = request('latitude');
+                $absensi->longitude = request('longitude');
+                $absensi->istirahat = 1;
+                $absensi->pulang = 1;
+                $absensi->status = 1;
+                $absensi->handleUploadFoto();
+                $absensi->save();
+                
+                return redirect('pegawai/absensi')->with('success', 'Anda telah mengisi presensi hari ini');
+            } elseif (Carbon::parse($jamDatang)->lessThan('08:00:00')) {
+                $absensi = new Absensi;
+                $absensi->nama = request()->user()->nama;
+                $absensi->id_user = request()->user()->id;  
+                $absensi->latitude = request('latitude');
+                $absensi->longitude = request('longitude');
+                $absensi->istirahat = 1;
+                $absensi->pulang = 1;
+                $absensi->status = 2;
+                $absensi->handleUploadFoto();
+                $absensi->save();
+                
+                return redirect('pegawai/absensi')->with('success', 'Anda telah mengisi presensi hari ini');
+            } else {
+                $absensi = new Absensi;
+                $absensi->nama = request()->user()->nama;
+                $absensi->id_user = request()->user()->id;  
+                $absensi->latitude = request('latitude');
+                $absensi->longitude = request('longitude');
+                $absensi->istirahat = 1;
+                $absensi->pulang = 1;
+                $absensi->status = 3;
+                $absensi->handleUploadFoto();
+                $absensi->save();
+                
+                return redirect('pegawai/absensi')->with('success', 'Anda telah mengisi presensi hari ini');
+            }
+        } else {
+            return back()->with('danger', 'Anda berada di luar radius lokasi absensi.');
+        }  
     }
+
 
     /**
      * Display the specified resource.

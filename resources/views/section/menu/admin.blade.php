@@ -39,28 +39,10 @@ function checkRouteActive($route)
             </li>
         </ul>
     </li>
-    {{-- <li class="nav-item">
-        <a class="nav-link {{checkRouteActive('admin/absensi')}}" href="{{url('admin/absensi')}}">
-            <i class="bi bi-calendar-check"></i>
-            <span>Absensi</span>
-        </a>
-    </li> --}}
-    <li class="nav-item">
-        <a class="nav-link {{checkRouteActive('admin/lembur')}}" href="{{url('admin/lembur')}}">
-            <i class="bi bi-clock"></i>
-            <span>Lembur</span>
-        </a>
-    </li>
     <li class="nav-item">
         <a class="nav-link {{checkRouteActive('admin/izin-cuti')}}" href="{{url('admin/izin-cuti')}}">
             <i class="bi bi-envelope"></i>
             <span>Izin dan Cuti</span>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link {{checkRouteActive('admin/dinas')}}" href="{{url('admin/dinas')}}">
-            <i class="bi bi-globe2"></i>
-            <span>Dinas</span>
         </a>
     </li>
 </ul>

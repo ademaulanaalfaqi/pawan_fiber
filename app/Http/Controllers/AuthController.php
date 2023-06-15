@@ -21,7 +21,7 @@ class AuthController extends Controller
             return redirect('admin/dashboard');
         }
 
-		return redirect('login');
+		return redirect('login')->with('error', 'Login Gagal');
 	}
 
     public function logout(Request $request){

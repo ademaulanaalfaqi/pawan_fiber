@@ -17,6 +17,12 @@ class AbsensiController extends Controller
     {
         $data ['hari_ini'] = Carbon::today()->format('d F Y');
         $data ['list_absensi'] = Absensi::whereDate('created_at', '=', Carbon::today()->toDateString())->get();
+
+        if (request('tanggal')) {
+            $tanggal = request('tanggal');
+            $data ['list_absensi'] = Absensi::whereDate('created_at', $tanggal)->get();
+        }
+
         return view('_.admin.absensi.index', $data);
     }
 

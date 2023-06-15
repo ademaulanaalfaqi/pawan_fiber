@@ -1,6 +1,6 @@
 <x-template.admin title="Dashboard Admin">
     <div class="pagetitle">
-        <h1>Welcome Admin</h1>
+        <h1>Welcome {{request()->user()->nama}}</h1>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -19,15 +19,15 @@
                             </ul>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Sales <span>| Today</span></h5>
+                            <h5 class="card-title">Izin dan Cuti <span>| Total</span></h5>
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-cart"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>145</h6>
+                                    <h6>{{$total}}</h6>
                                     <span class="text-success small pt-1 fw-bold">12%</span>
-                                    <span class="text-muted small pt-2 ps-1">increase</span>
+                                    <span class="text-muted small pt-2 ps-1">Pawan Fiber</span>
                                 </div>
                             </div>
                         </div>
@@ -50,15 +50,15 @@
                             </ul>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Revenue <span>| This Month</span></h5>
+                            <h5 class="card-title">Izin dan Cuti <span>| Diterima</span></h5>
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-currency-dollar"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>$3,264</h6>
+                                    <h6>{{$diterima}}</h6>
                                     <span class="text-success small pt-1 fw-bold">8%</span>
-                                    <span class="text-muted small pt-2 ps-1">increase</span>
+                                    <span class="text-muted small pt-2 ps-1">Pawan Fiber</span>
                                 </div>
                             </div>
                         </div>
@@ -81,15 +81,15 @@
                             </ul>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Customers <span>| This Year</span></h5>
+                            <h5 class="card-title">Izin dan Cuti <span>| Ditolak</span></h5>
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="bi bi-people"></i>
                                 </div>
                                 <div class="ps-3">
-                                    <h6>1244</h6>
+                                    <h6>{{$ditolak}}</h6>
                                     <span class="text-danger small pt-1 fw-bold">12%</span>
-                                    <span class="text-muted small pt-2 ps-1">decrease</span>
+                                    <span class="text-muted small pt-2 ps-1">Pawan Fiber</span>
                                 </div>
                             </div>
                         </div>

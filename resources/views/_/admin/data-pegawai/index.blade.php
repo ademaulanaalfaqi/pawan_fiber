@@ -1,5 +1,5 @@
 <x-template.admin title="Data Pegawai Admin">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -84,16 +84,22 @@
                     <form action="{{ url('admin/data-pegawai') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">NIK</label>
-                                    <input type="text" class="form-control" name="nik" required>
+                                    <input type="number" class="form-control" name="nik" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Nama Lengkap</label>
                                     <input type="text" class="form-control" name="nama" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Alamat</label>
+                                    <input type="text" class="form-control" name="alamat" required>
                                 </div>
                             </div>
                         </div>
@@ -262,16 +268,22 @@
                         <form action="{{ url('admin/data-pegawai') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">NIK</label>
-                                        <input type="text" class="form-control" value="{{$datapegawai->nik}}" name="nik"  required>
+                                        <input type="number" class="form-control" value="{{$datapegawai->nik}}" name="nik"  required>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="">Nama Lengkap</label>
                                         <input type="text" class="form-control" value="{{$datapegawai->nama}}" name="nama" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Alamat</label>
+                                        <input type="text" class="form-control" value="{{$datapegawai->alamat}}" name="alamat" required>
                                     </div>
                                 </div>
                             </div>

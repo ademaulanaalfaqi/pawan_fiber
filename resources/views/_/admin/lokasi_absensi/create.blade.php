@@ -1,5 +1,5 @@
 <x-template.admin title="Tambah Lokasi">
-    <div class="container">
+    <div class="container-fluid">
         <a href="{{url('admin/lokasi_absensi')}}" class="btn btn-dark mb-3"><i class="bi bi-arrow-bar-left"></i> Kembali</a>
         <div class="row">
             <div class="col-md-12">
@@ -18,6 +18,14 @@
                                             <div class="form-group">
                                                 <label for="" class="control-label mb-1">Nama Lokasi</label>
                                                 <input type="text" class="form-control" name="lokasi">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-2">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="" class="control-label mb-1">Radius</label>
+                                                <input type="text" class="form-control" name="radius" placeholder="Dalam Satuan Meter">
                                             </div>
                                         </div>
                                     </div>

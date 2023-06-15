@@ -1,12 +1,15 @@
 <x-template.pegawai title="Izin dan Cuti Pegawai">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h5 class="card-title">Izin dan Cuti</h5>
+                                <h5 class="card-title">
+                                    Izin dan Cuti <br>
+                                    <span class="text-secondary">Jatah Cuti = {{$sisa_jatah}}</span>
+                                </h5>
                             </div>
                             <div class="col-md-6">
                                 <button type="button" class="btn btn-outline-success float-end mt-3"
@@ -144,13 +147,13 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="" class="control-label">Tanggal Mulai</label>
+                                        <label for="" class="form-label">Tanggal Mulai</label>
                                         <input type="date" name="tanggal_mulai" value="{{$izincuti->tanggal_mulai}}" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="" class="control-label">Tanggal Selesai</label>
+                                        <label for="" class="form-label">Tanggal Selesai</label>
                                         <input type="date" name="tanggal_selesai" value="{{$izincuti->tanggal_selesai}}" class="form-control">
                                     </div>
                                 </div>
@@ -158,7 +161,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="" class="control-label">Tipe Izin</label>
+                                        <label for="" class="form-label">Tipe Izin</label>
                                         <select name="tipe_izin" class="form-control">
                                             <option value="">Pilih</option>
                                             <option selected>{{ $izincuti->tipe_izin }}</option>
@@ -170,14 +173,14 @@
                                 </div>
                                 <div class="col-md-9">
                                     <div class="form-group">
-                                        <label for="" class="control-label">Foto</label>
+                                        <label for="" class="form-label">Foto</label>
                                         <input type="file" class="form-control" name="foto"
                                             accept=".png, .jpg, .jpeg">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="" class="control-label">Keterangan</label>
+                                <label for="" class="form-label">Keterangan</label>
                                 <input type="text" name="keterangan" value="{{$izincuti->keterangan}}" class="form-control">
                             </div>
                             <div class="modal-footer">

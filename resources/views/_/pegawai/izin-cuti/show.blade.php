@@ -1,12 +1,14 @@
 <x-template.pegawai title="Detail Izin dan Cuti">
-    <div class="container">
+    <div class="container-fluid">
         <a href="{{ url('pegawai/izin-cuti') }}" class="btn btn-dark mb-3"><i class="bi bi-arrow-bar-left">
         </i> Kembali</a>
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-body text-center mt-3" style="height: 150px">
-                        <img style="height: 100%;" src="{{url("public/$izincuti->foto")}}" alt="">
+                    <div class="card-body">
+                        <a data-bs-toggle="modal" data-bs-target="#largeModal" href="">
+                            <img class="mt-3" style="height: auto; max-width: 100%;" src="{{url("public/$izincuti->foto")}}" alt="">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -55,6 +57,20 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="largeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Foto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <img src="{{ url("public/$izincuti->foto") }}" style="height: auto; max-width: 100%;" alt="foto">
                 </div>
             </div>
         </div>

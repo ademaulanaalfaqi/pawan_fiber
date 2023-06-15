@@ -13,10 +13,12 @@ class App extends Component
      */
 
     public $menu;
+    public $alert;
     public $title;
-    public function __construct($menu = null, $title = null)
+    public function __construct($menu = null, $title = null, $alert = null)
     {
         $this->menu = $menu;
+        $this->title = $alert;
         $this->title = $title;
     }
 

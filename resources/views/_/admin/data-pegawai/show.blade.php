@@ -1,5 +1,5 @@
 <x-template.admin title="Info Data Pegawai">
-    <div class="container">
+    <div class="container-fluid">
         <a href="{{ url('admin/data-pegawai') }}" class="btn btn-dark mb-3"><i class="bi bi-arrow-bar-left">
             </i> Kembali</a>
         <div class="row">

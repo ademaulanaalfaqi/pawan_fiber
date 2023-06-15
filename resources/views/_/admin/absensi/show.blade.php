@@ -1,5 +1,5 @@
 <x-template.admin title="Detail Absensi">
-    <div class="container">
+    <div class="container-fluid">
         <a href="{{url('admin/absensi')}}" class="btn btn-dark mb-3"><i class="bi bi-arrow-bar-left"></i> Kembali</a>
         <div class="row">
             <div class="col-md-8">
@@ -17,7 +17,7 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Nama</strong></label>
-                                    <p class="form-control-static col-md-8"></p>
+                                    <p class="form-control-static col-md-8">{{$absensi->nama}}</p>
                                 </div>
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Tanggal</strong></label>
@@ -25,8 +25,10 @@
                                 </div>
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Foto</strong></label>
-                                    <div class="text-center" style="height:300px;">
-                                        <img class="img-thumbnail h-100 rounded" src="{{url("public/$absensi->foto")}}" alt="">
+                                    <div class="text-center" style="height:300px; width: 300px">
+                                        <a data-bs-toggle="modal" data-bs-target="#largeModal" href="">
+                                            <img class="img-thumbnail rounded" style="height: auto; max-width: 100%;" src="{{ url("public/$absensi->foto") }}" alt="">
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -36,6 +38,20 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="largeModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Foto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ url("public/$absensi->foto") }}" style="height: auto; max-width: 100%;" alt="foto">
+                </div>
+            </div>
+        </div>
+    </div>   
 
     @push('script')
         <script type="module">

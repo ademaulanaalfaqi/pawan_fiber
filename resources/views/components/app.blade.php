@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+    {{-- <link rel="stylesheet" href="{{url('public')}}/assets/leaflet/leaflet.css"> --}}
 
     
     @stack('style')
@@ -61,6 +62,20 @@
 
     <main id="main" class="main">
         <section class="section dashboard">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        @foreach(['success', 'warning', 'danger'] as $status)
+                            @if (session($status))
+                                <div class="alert alert-{{$status}} alert-dismissible fade show" role="alert">
+                                    {{session($status)}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
             {{$slot}}
             <br><br><br>
         </section>
@@ -92,10 +107,20 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+    {{-- <script src="{{url('public')}}/assets/leaflet/leaflet.js"></script> --}}
 
+    {{-- modal image --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('script')
+    <script>
+        $(document).ready(function() {
+            $('#datatable').DataTable({
+                "order": [[0, "desc"]]
+            });
+        });
+    </script>
 
 </body>
 

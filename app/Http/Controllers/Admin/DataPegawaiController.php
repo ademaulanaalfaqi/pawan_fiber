@@ -30,9 +30,10 @@ class DataPegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $$datapegawai = new DataPegawai;
+        $datapegawai = new DataPegawai;
         $datapegawai->nik = request('nik');
         $datapegawai->nama = request('nama');
+        $datapegawai->alamat = request('alamat');
         $datapegawai->no_handphone = request('no_handphone');
         $datapegawai->gaji_pokok = request('gaji_pokok');
         $datapegawai->status_kerja = request('status_kerja');
@@ -76,6 +77,7 @@ class DataPegawaiController extends Controller
     {
         $datapegawai->nik = request('nik');
         $datapegawai->nama = request('nama');
+        $datapegawai->alamat = request('alamat');
         $datapegawai->no_handphone = request('no_handphone');
         $datapegawai->gaji_pokok = request('gaji_pokok');
         $datapegawai->status_kerja = request('status_kerja');
