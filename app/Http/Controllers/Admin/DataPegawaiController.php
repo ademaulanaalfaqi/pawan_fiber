@@ -2,9 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+
+use App\Models\Divisi;
+use App\Models\Jabatan;
+use App\Models\IzinCuti;
+use App\Models\DKeluarga;
+use App\Models\HariKerja;
 use App\Models\DataPegawai;
+use App\Models\StatusKerja;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\DAnak;
 
 class DataPegawaiController extends Controller
 {
@@ -12,25 +21,21 @@ class DataPegawaiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {                           
+        $data ['list_izin'] = IzinCuti::all();
+        $data ['list_harikerja'] = HariKerja::all();
+        $data ['list_statuskerja'] = StatusKerja::all();
+        $data ['list_divisi'] = Divisi::all();
+        $data ['list_dkeluarga'] = DKeluarga::all();
+        $data ['list_jabatan'] = Jabatan::all();
+        $data ['total_pengajuan'] = IzinCuti::where('status', '1')->count();
         $data ['list_datapegawai'] = DataPegawai::all();
         return view('_.admin.data-pegawai.index', $data);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(DataPegawai $datapegawai)
     {
         $datapegawai = new DataPegawai;
+        // $$datapegawai = new Biodata;
         $datapegawai->nik = request('nik');
         $datapegawai->nama = request('nama');
         $datapegawai->alamat = request('alamat');
@@ -50,7 +55,7 @@ class DataPegawaiController extends Controller
         $datapegawai->handleUploadFoto();
         $datapegawai->save();
 
-        return redirect('admin/data-pegawai');
+        return redirect('admin/data-pegawai')->with('success', 'Data berhasil ditambah');
     }
 
     /**
@@ -65,16 +70,20 @@ class DataPegawaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(DataPegawai $datapegawai)
+    public function edit (DataPegawai $datapegawai)
     {
-        //
+        $data ['list_harikerja'] = HariKerja::all();
+        $data ['list_statuskerja'] = StatusKerja::all();
+        $data ['list_divisi'] = Divisi::all();
+        $data ['list_jabatan'] = Jabatan::all();
+        $data ['datapegawai'] = $datapegawai;
+        return view('_.admin.data-pegawai.edit', $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+   
     public function update(DataPegawai $datapegawai)
     {
+        // $datapegawai->id = request()->id;
         $datapegawai->nik = request('nik');
         $datapegawai->nama = request('nama');
         $datapegawai->alamat = request('alamat');
@@ -94,7 +103,7 @@ class DataPegawaiController extends Controller
         if(request('foto')) $datapegawai->handleUploadFoto();
         $datapegawai->save();
 
-        return redirect('admin/data-pegawai');
+        return redirect('admin/data-pegawai')->with('warning', 'Data berhasil diubah');
     }
 
     /**
@@ -103,6 +112,16 @@ class DataPegawaiController extends Controller
     public function destroy(DataPegawai $datapegawai)
     {
         $datapegawai->delete();
-        return redirect('admin/data-pegawai');
+        // return $datapegawai;
+        return redirect('admin/data-pegawai')->with('Danger', 'Data berhasil di hapus');
     }
+
+    public function cetak_pdf(DataPegawai $datapegawai)
+    {
+        $data ['datapegawai'] = $datapegawai;
+        return view('_.Pegawai.profil.cetak_pdf', $data);
+    }
+
+
+    
 }

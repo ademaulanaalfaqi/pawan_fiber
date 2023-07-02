@@ -1,7 +1,9 @@
-<form action="{{$url}}" method="post" onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
+
+<form action="{{ url($url, $id) }}" method="post"
+    onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
     @csrf
     @method('delete')
-    <button class="btn btn-danger">Hapus</button>
+    <button class="btn btn-danger"><i class="bi bi-trash"></i> Hapus</button>
 </form>
 
 

@@ -1,3 +1,4 @@
 <x-app menu="section.menu.admin">
-    {{$slot}}
+    
+    {{ $slot }}
 </x-app>
