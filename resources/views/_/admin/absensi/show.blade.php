@@ -25,9 +25,9 @@
                                 </div>
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Foto</strong></label>
-                                    <div class="text-center" style="height:300px; width: 300px">
+                                    <div class="text-center" style="height:300px;">
                                         <a data-bs-toggle="modal" data-bs-target="#largeModal" href="">
-                                            <img class="img-thumbnail rounded" style="height: auto; max-width: 100%;" src="{{ url("public/$absensi->foto") }}" alt="">
+                                            <img class="img-thumbnail rounded" style="height: 100%;" src="{{ url("public/$absensi->foto") }}" alt="">
                                         </a>
                                     </div>
                                 </div>

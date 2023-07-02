@@ -87,6 +87,7 @@
 	<script src="{{url('public/assets')}}/loginassets/js/main.js"></script>
 
 </body>
+<<<<<<< Updated upstream
 
 </html>
 
@@ -143,3 +144,6 @@
 </body><!-- This templates was made by Colorlib (https://colorlib.com) -->
 
 </html> --}}
+=======
+</html>
+>>>>>>> Stashed changes

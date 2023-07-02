@@ -63,8 +63,7 @@
                                                     -
                                                 @endif
                                             </td>
-                                            <td><a href="{{ url('admin/absensi', $absensi->id) }}"
-                                                    class="btn btn-dark"><i class="bi bi-info-circle"></i></a></td>
+                                            <td><a href="{{ url('admin/absensi', $absensi->id) }}" class="btn btn-dark"><i class="bi bi-info-circle"></i></a></td>
                                         </tr>
                                     @endforeach
                                 </tbody>
