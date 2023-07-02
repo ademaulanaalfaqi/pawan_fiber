@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Pegawai;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lembur;
+use App\Models\IzinCuti;
 use Illuminate\Http\Request;
 
 class LemburController extends Controller
@@ -13,7 +14,9 @@ class LemburController extends Controller
      */
     public function index()
     {
-        $data ['list_lembur'] = Lembur::all();
+        $data ['list_izin'] = IzinCuti::all();
+        $id_user = request()->user()->id;
+        $data ['list_lembur'] = Lembur::where('id_user',$id_user)->get();
         return view('_.pegawai.lembur.index', $data);
     }
 
@@ -31,8 +34,8 @@ class LemburController extends Controller
     public function store(Request $request)
     {
         $lembur = new Lembur;
-        // $lembur->id_user = request()->user()->id;
-        // $lembur->nama = request()->user()->nama;
+        $lembur->id_user = request()->user()->id;
+        $lembur->nama = request()->user()->nama;
         $lembur->aktifitas = request('aktifitas');
         $lembur->lembur = 1;
         $lembur->save();

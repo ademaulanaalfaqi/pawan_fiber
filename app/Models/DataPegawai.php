@@ -25,6 +25,7 @@ class DataPegawai extends ModelAuthenticate
 		return $this->hasMany(IzinCuti::class, 'id_user');
 	}
 
+
     function handleUploadFoto()
 	{
         $this->handleDelete();
@@ -50,4 +51,12 @@ class DataPegawai extends ModelAuthenticate
 			return true;
 		}
 	}
+
+	function DKeluarga() {
+		return $this->hasOne(DKeluarga::class, 'id_user');
+	}
+	function DAnak() {
+		return $this->hasMany(DAnak::class, 'id_user');
+	}
+	
 }

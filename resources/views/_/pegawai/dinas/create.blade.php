@@ -6,11 +6,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Tambah Data Dinas</h5>
-                        <form class="myForm" action="{{ url('user/dinas') }}" method="post">
+                        <form class="myForm" action="{{ url('pegawai/dinas') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="">Nama</label>
-                                <input type="text" class="form-control" name="nama" value="{{request()->user()->nama}}" readonly>
+                                <input type="text" class="form-control" name="nama"
+                                    value="{{ request()->user()->nama }}" readonly>
                             </div>
                             <div class="row mt-2">
                                 <div class="col-md-3">
@@ -37,13 +38,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="" class="control-label">latitude</label>
-                                        <input type="text" id="latitude-input" class="form-control" name="latitude" readonly required>
+                                        <input type="text" id="latitude-input" class="form-control" name="latitude"
+                                            readonly required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="" class="control-label">Longitude</label>
-                                        <input type="text" id="longitude-input" class="form-control" name="longitude" readonly required>
+                                        <input type="text" id="longitude-input" class="form-control" name="longitude"
+                                            readonly required>
                                     </div>
                                 </div>
                             </div>
@@ -52,14 +55,15 @@
                                 <div id="map">
                                     <style>
                                         #map {
-    
+
                                             height: 350px;
-    
+
                                         }
                                     </style>
                                 </div>
                             </div>
-                            <button class="btn btn-dark float-right mt-4 float-end"> <i class="mdi mdi-content-save"></i>Simpan</button>
+                            <button class="btn btn-dark float-right mt-4 float-end"> <i
+                                    class="mdi mdi-content-save"></i>Simpan</button>
                         </form>
                     </div>
                 </div>

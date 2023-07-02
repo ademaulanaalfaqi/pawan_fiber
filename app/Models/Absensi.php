@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DataPegawai;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,5 +23,10 @@ class Absensi extends Model
 			$this->foto = "app/" . $url;
 			$this->save();
 		}
+    }
+
+	function DataPegawai()
+    {
+        return $this->belongsTo(DataPegawai::class, 'id_user');
     }
 }

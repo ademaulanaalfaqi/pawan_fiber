@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Dinas;
+use App\Models\IzinCuti;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DinasController extends Controller
 {
@@ -12,7 +14,10 @@ class DinasController extends Controller
      */
     public function index()
     {
-        //
+        $data ['list_izin'] = IzinCuti::all();
+        $data ['total_pengajuan'] = IzinCuti::where('status', '1')->count();
+        $data ['list_dinas'] = Dinas::all();
+        return view('_.admin.dinas.index', $data);
     }
 
     /**
@@ -31,35 +36,31 @@ class DinasController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Dinas $dinas)
     {
-        //
+        $data ['list_izin'] = IzinCuti::all();
+        $data ['total_pengajuan'] = IzinCuti::where('status', '1')->count();
+        $data ['list_dinas'] = Dinas::where('id', $dinas)->get();
+        $data ['dinas'] = $dinas;
+        return view('_.admin.dinas.show', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+
+
+    
+    function destroy(Dinas $dinas){
+        $dinas->delete();
+        // return $dinas;
+        return redirect('admin/dinas');
     }
 }

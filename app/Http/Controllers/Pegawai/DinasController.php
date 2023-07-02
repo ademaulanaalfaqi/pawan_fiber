@@ -2,66 +2,70 @@
 
 namespace App\Http\Controllers\Pegawai;
 
-use App\Http\Controllers\Controller;
 use App\Models\Dinas;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DinasController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $data ['list_dinas'] = Dinas::all();
+        $id_user = request()->user()->id;
+        $data ['list_dinas'] = Dinas::where('id_user', $id_user)->get();
+        // return $data;
         return view('_.pegawai.dinas.index', $data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('_.pegawai.dinas.create');
+        return view('_.pegawai.dinas.create' );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Dinas $dinas)
     {
-        //
+        $dinas = new Dinas;
+        $dinas->id_user = request()->user()->id;
+        $dinas->nama = request('nama');
+        $dinas->tanggal_mulai = request('tanggal_mulai');
+        $dinas->tanggal_selesai = request('tanggal_selesai');
+        $dinas->deskripsi_dinas = request('deskripsi_dinas');
+        $dinas->latitude = request('latitude');
+        $dinas->longitude = request('longitude');
+        $dinas->save();
+        
+        return redirect('pegawai/dinas')->with('success', 'Data berhasil Di Tambah');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
+    public function show(Dinas $dinas)
+    { 
+        $data ['list_dinas'] = Dinas::where('id',$dinas)->get();
+        $data ['dinas'] = $dinas;
+        return view('_.pegawai.dinas.show', $data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(DInas $dinas)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $dinas->nama = request('nama');
+        $dinas->tanggal_mulai = request('tanggal_mulai');
+        $dinas->tanggal_selesai = request('tanggal_selesai');
+        $dinas->deskripsi_dinas = request('deskripsi_dinas');
+        $dinas->latitude = request('latitude');
+        $dinas->longitude = request('longitude');
+        $dinas->save();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Dinas $dinas)
     {
-        //
+        $dinas->delete();
+        return redirect('pegawai/dinas')->with('danger','Data Berhasil Dihapus');
     }
 }
+
+

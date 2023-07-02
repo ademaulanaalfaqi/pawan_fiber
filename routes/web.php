@@ -1,19 +1,25 @@
 <?php
 
-use App\Http\Controllers\Admin\AbsensiController as AdminAbsensiController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Admin\DataPegawaiController;
-use App\Http\Controllers\Admin\DinasController;
-use App\Http\Controllers\Admin\IzinCutiController as AdminIzinCutiController;
-use App\Http\Controllers\Admin\LemburController as AdminLemburController;
-use App\Http\Controllers\Admin\LokasiAbsensiController;
-use App\Http\Controllers\Pegawai\AbsensiController as PegawaiAbsensiController;
-use App\Http\Controllers\Pegawai\DashboardController as PegawaiDashboardController;
-use App\Http\Controllers\Pegawai\DinasController as PegawaiDinasController;
-use App\Http\Controllers\Pegawai\IzinCutiController as PegawaiIzinCutiController;
-use App\Http\Controllers\Pegawai\LemburController as PegawaiLemburController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Pegawai\DataAnakController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\DinasController;
+use App\Http\Controllers\Admin\DivisiController;
+use App\Http\Controllers\Admin\JabatanController;
+use App\Http\Controllers\Admin\HariKerjaController;
+use App\Http\Controllers\Admin\DataPegawaiController;
+use App\Http\Controllers\Admin\StatusKerjaController;
+use App\Http\Controllers\Admin\LokasiAbsensiController;
+use App\Http\Controllers\Pegawai\DataProfilPegawaiController;
+use App\Http\Controllers\Admin\LemburController as AdminLemburController;
+use App\Http\Controllers\Admin\AbsensiController as AdminAbsensiController;
+use App\Http\Controllers\Pegawai\DinasController as PegawaiDinasController;
+use App\Http\Controllers\Admin\IzinCutiController as AdminIzinCutiController;
+use App\Http\Controllers\Pegawai\LemburController as PegawaiLemburController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Pegawai\AbsensiController as PegawaiAbsensiController;
+use App\Http\Controllers\Pegawai\IzinCutiController as PegawaiIzinCutiController;
+use App\Http\Controllers\Pegawai\DashboardController as PegawaiDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +57,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function(){
     Route::get('data-pegawai/{datapegawai}', [DataPegawaiController::class, 'show']);
     Route::delete('data-pegawai/{datapegawai}', [DataPegawaiController::class, 'destroy']);
     Route::post('data-pegawai', [DataPegawaiController::class, 'store']);
-    Route::get('data-pegawai{datapegawai}/edit', [DataPegawaiController::class, 'edit']);
-    Route::put('data-pegawai{datapegawai}', [DataPegawaiController::class, 'update']);
+    Route::get('data-pegawai/{datapegawai}/edit',[DataPegawaiController::class,'edit']);
+    Route::put('data-pegawai/{datapegawai}',[DataPegawaiController::class,'update']);
     Route::delete('data-pegawai{datapegawai}', [DataPegawaiController::class, 'destroy']);
     
 
@@ -67,6 +73,23 @@ Route::prefix('admin')->middleware('auth:admin')->group(function(){
     Route::delete('lembur/{lembur}', [AdminLemburController::class, 'destroy']);
     
     Route::get('dinas', [DinasController::class, 'index']);
+    Route::get('dinas/{dinas}', [DinasController::class, 'show']);
+    Route::delete('dinas/{dinas}', [DinasController::class, 'destroy']);
+
+
+
+    
+    // DATA SETTING
+    // JABATAN
+    Route::resource('data-pegawai/setting/jabatan',JabatanController::class);
+    // DIVISI
+    Route::resource('data-pegawai/setting/divisi',DivisiController::class);
+    // HARI KERJA
+    Route::resource('data-pegawai/setting/hari_kerja',HariKerjaController::class);
+    // STATUS KERJA
+    Route::resource('data-pegawai/setting/statuskerja',StatusKerjaController::class);
+
+    
 });
 
 // PEGAWAI
@@ -92,5 +115,18 @@ Route::prefix('pegawai')->middleware('auth:pegawai')->group(function(){
 
     Route::get('dinas', [PegawaiDinasController::class, 'index']);
     Route::get('dinas/create', [PegawaiDinasController::class, 'create']);
+    Route::post('dinas', [PegawaiDinasController::class, 'store']);
+    Route::get('dinas/{dinas}', [PegawaiDinasController::class, 'show']);
+    Route::delete('dinas/{dinas}', [PegawaiDinasController::class, 'destroy']);
 
+   Route::get('profil',[DataProfilPegawaiController::class,'profil']);
+//    Route::get('profil/{data_keluarga}/edit',[DataPegawaiController::class,'editdkeluarga']);
+   Route::POST('profil',[DataProfilPegawaiController::class,'storekeluarga']);
+   Route::post('profil/anak',[DataAnakController::class,'store']);
+   
+   Route::get('profil/{datapegawai}/edit',[DataProfilPegawaiController::class,'edit']);
+   Route::put('profil/{datapegawai}',[DataProfilPegawaiController::class,'update']);
+
+   Route::get('profil/editkeluarga/{DKeluarga}',[DataAnakController::class,'editkeluarga']);
+   Route::put('profil/editkeluarga/{datakeluarga}',[DataAnakController::class,'updatekeluarga']);
 });
