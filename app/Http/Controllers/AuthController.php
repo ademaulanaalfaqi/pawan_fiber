@@ -18,10 +18,10 @@ class AuthController extends Controller
         } 
 
         if (auth()->guard('admin')->attempt(['email' => request('email'), 'password' => request('password')])){
-            return redirect('admin/dashboard');
+            return redirect('admin/dashboard')->with('success','Login Berhasil');
         }
 
-		return redirect('login')->with('error', 'Login Gagal');
+		return redirect('login')->with('danger', 'Login Gagal');
 	}
 
     public function logout(Request $request){

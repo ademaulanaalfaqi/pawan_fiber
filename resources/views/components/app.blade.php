@@ -65,20 +65,6 @@
 
     <main id="main" class="main">
         <section class="section dashboard">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        @foreach(['success', 'warning', 'danger'] as $status)
-                            @if (session($status))
-                                <div class="alert alert-{{$status}} alert-dismissible fade show" role="alert">
-                                    {{session($status)}}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            @endif
-                        @endforeach
-                    </div>
-                </div>
-            </div>
             <x-template.notif />
             {{$slot}}
             <br><br><br>

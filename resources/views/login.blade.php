@@ -45,12 +45,7 @@
 					<div class="login100-form-title p-b-43" style="height: 170px">
 						<img src="{{url('public/assets')}}/loginassets/images/logo.png" style="height: 100%" alt="">
 					</div>
-					@if (session('error'))
-						<div class="alert alert-danger alert-dismissible fade show" role="alert">
-							{{session('error')}}
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div>
-					@endif
+					<x-template.notif />
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="email" name="email" placeholder="Email">
 					</div>
