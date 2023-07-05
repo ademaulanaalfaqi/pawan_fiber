@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Notif extends Component
+class Notifikasi extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class Notif extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.template.notif');
+        return view('components.template.notifikasi');
     }
 }

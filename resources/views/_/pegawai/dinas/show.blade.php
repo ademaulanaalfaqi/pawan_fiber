@@ -4,52 +4,33 @@
         <div class="row  mt-2">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="card-title">Detail Dinas</div>
-                    </div>
                     <div class="card-body">
+                        <h5 class="card-title">Detail Dinas</h5> <hr>
                         <div class="row">
-                            <div class="col-md-12">
-                                <h4>{{ $dinas->nama }}</h4>
-                            </div>
-                        </div>
-                        <div class="row mt-3">
                             <div class="col-md-6">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="table-responsive">
-                                            <table class="table table-borderless">
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1.</td>
-                                                        <td>Tanggal Mulai</td>
-                                                        <td>:</td>
-                                                        <td>{{ date('d F Y', strtotime($dinas->tanggal_mulai)) }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2.</td>
-                                                        <td>Tanggal Selesai</td>
-                                                        <td>:</td>
-                                                        <td>{{ date('d F Y', strtotime($dinas->tanggal_selesai)) }}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3.</td>
-                                                        <td>Deskripsi Dinas</td>
-                                                        <td>:</td>
-                                                        <td>{{ $dinas->deskripsi_dinas }}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                <div class="row">
+                                    <label for="" class="control-label col-md-4"><strong>Nama</strong></label>
+                                    <p class="form-control-static col-md-8">{{$dinas->nama}}</p>
+                                </div>
+                                <div class="row">
+                                    <label for="" class="control-label col-md-4"><strong>Tanggal mulai</strong></label>
+                                    <p class="form-control-static col-md-8">{{date('d F Y', strtotime($dinas->tanggal_mulai))}}</p>
+                                </div>
+                                <div class="row">
+                                    <label for="" class="control-label col-md-4"><strong>Tanggal Selesai</strong></label>
+                                    <p class="form-control-static col-md-8">{{date('d F Y', strtotime($dinas->tanggal_selesai))}}</p>
+                                </div>
+                                <div class="row">
+                                    <label for="" class="control-label col-md-4"><strong>Deskripsi</strong></label>
+                                    <p class="form-control-static col-md-8">{{$dinas->deskripsi_dinas}}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card">
+                                    <div class="card-body" style="height: 250px">
+                                        <div id="map" class="mt-2" style="height: 100%;"></div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-
-                                <div class="card-body" style="height: 250px">
-                                    <div id="map" style="height: 100%;"></div>
-                                </div>
-
                             </div>
                         </div>
                     </div>

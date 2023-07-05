@@ -65,7 +65,7 @@
 
     <main id="main" class="main">
         <section class="section dashboard">
-            <x-template.notif />
+            <x-template.alert />
             {{$slot}}
             <br><br><br>
         </section>

@@ -14,7 +14,7 @@ class DashboardController extends Controller
         $data ['ditolak'] = IzinCuti::where('status', '3')->count();
         $data ['total'] = IzinCuti::count();
         $data ['total_pengajuan'] = IzinCuti::where('status', '1')->count();
-        $data ['list_izin'] = IzinCuti::all();
+        $data ['list_izincuti'] = IzinCuti::all();
         return view('_.admin.dashboard', $data);
     }
 }

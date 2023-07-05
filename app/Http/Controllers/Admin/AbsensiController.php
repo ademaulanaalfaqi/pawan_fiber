@@ -15,6 +15,8 @@ class AbsensiController extends Controller
      */
     public function index()
     {
+        $data ['total_pengajuan'] = IzinCuti::where('status', '1')->count();
+        $data ['list_izincuti'] = IzinCuti::all();
         $data ['hari_ini'] = Carbon::today()->format('d F Y');
         $data ['list_absensi'] = Absensi::whereDate('created_at', '=', Carbon::today()->toDateString())->get();
 

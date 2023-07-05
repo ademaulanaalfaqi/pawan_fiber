@@ -3,7 +3,7 @@
     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')">
     @csrf
     @method('delete')
-    <button class="btn btn-danger"><i class="bi bi-trash"></i> Hapus</button>
+    <button class="btn btn-danger">Hapus</button>
 </form>
 
 

@@ -1,5 +1,5 @@
 <x-template.pegawai title="Dinas Pegawai">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -9,12 +9,10 @@
                                 <h5 class="card-title">Dinas Pegawai</h5>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ url('pegawai/dinas/create') }}" class="btn btn-primary float-end mt-3"> <i
-                                        class="bi bi-plus-lg"></i>
-                                    Tambah</a>
+                                <a href="{{ url('pegawai/dinas/create') }}" class="btn btn-outline-success float-end mt-3"> <i class="bi bi-plus-lg"></i> Tambah</a>
                             </div>
                         </div>
-                        <table class="datatable">
+                        <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -29,8 +27,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ url('pegawai/dinas', $dinas->id) }}" class="btn btn-dark"><i
-                                                        class="bi bi-info" data-feather="check-square"></i> Lihat
+                                                <a href="{{ url('pegawai/dinas', $dinas->id) }}" class="btn btn-dark ">
+                                                    Lihat
                                                 </a>
                                                 <x-button.delete url="{{ url('pegawai/dinas', $dinas->id) }}" />
                                             </div>

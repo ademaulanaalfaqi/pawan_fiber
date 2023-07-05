@@ -28,4 +28,10 @@ function checkRouteActive($route)
             <span>Izin dan Cuti</span>
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {{checkRouteActive('pegawai/dinas')}}" href="{{url('pegawai/dinas')}}">
+            <i class="bi bi-envelope"></i>
+            <span>Dinas</span>
+        </a>
+    </li>
 </ul>
