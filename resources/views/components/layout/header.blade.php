@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-            <span class="d-none d-lg-block">Pawan Fiber</span>
+            <img src="{{ url('public') }}/assets/img/pf.png" alt="">
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -75,7 +75,7 @@
                 </ul><!-- End Notification Dropdown Items -->
             </li><!-- End Notification Nav -->
 
-            
+
 
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">

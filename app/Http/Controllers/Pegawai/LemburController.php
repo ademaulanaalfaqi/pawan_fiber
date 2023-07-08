@@ -13,7 +13,7 @@ class LemburController extends Controller
      */
     public function index()
     {
-        $data ['list_lembur'] = Lembur::all();
+        $data['list_lembur'] = Lembur::all();
         return view('_.pegawai.lembur.index', $data);
     }
 
@@ -31,8 +31,8 @@ class LemburController extends Controller
     public function store(Request $request)
     {
         $lembur = new Lembur;
-        // $lembur->id_user = request()->user()->id;
-        // $lembur->nama = request()->user()->nama;
+        $lembur->id_user = request()->user()->id;
+        $lembur->nama = request()->user()->nama;
         $lembur->aktifitas = request('aktifitas');
         $lembur->lembur = 1;
         $lembur->save();
@@ -45,7 +45,7 @@ class LemburController extends Controller
      */
     public function show(Lembur $lembur)
     {
-        $data ['lembur'] = $lembur;
+        $data['lembur'] = $lembur;
         return view('_.pegawai.lembur.show', $data);
     }
 

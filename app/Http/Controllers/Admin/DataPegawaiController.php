@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\DataPegawai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Payroll\Jabatan;
 
 class DataPegawaiController extends Controller
 {
@@ -13,7 +14,8 @@ class DataPegawaiController extends Controller
      */
     public function index()
     {
-        $data ['list_datapegawai'] = DataPegawai::all();
+        $data['list_jabatan'] = Jabatan::all();
+        $data['list_datapegawai'] = DataPegawai::all();
         return view('_.admin.data-pegawai.index', $data);
     }
 
@@ -30,7 +32,7 @@ class DataPegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        $$datapegawai = new DataPegawai;
+        $datapegawai = new DataPegawai;
         $datapegawai->nik = request('nik');
         $datapegawai->nama = request('nama');
         $datapegawai->no_handphone = request('no_handphone');
@@ -43,7 +45,7 @@ class DataPegawaiController extends Controller
         $datapegawai->jenis_kelamin = request('jenis_kelamin');
         $datapegawai->email = request('email');
         $datapegawai->divisi = request('divisi');
-        $datapegawai->jabatan = request('jabatan');
+        $datapegawai->id_jabatan = request('jabatan');
         $datapegawai->tanggal_masuk = request('tanggal_masuk');
         $datapegawai->password = request('password');
         $datapegawai->handleUploadFoto();
@@ -55,9 +57,9 @@ class DataPegawaiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $datapegawai)
+    public function show($datapegawai)
     {
-        $data ['datapegawai'] = DataPegawai::find($datapegawai);
+        $data['datapegawai'] = DataPegawai::find($datapegawai);
         return view('_.admin.data-pegawai.show', $data);
     }
 
@@ -88,8 +90,8 @@ class DataPegawaiController extends Controller
         $datapegawai->divisi = request('divisi');
         $datapegawai->jabatan = request('jabatan');
         $datapegawai->tanggal_masuk = request('tanggal_masuk');
-        if(request('password')) $datapegawai->password = request('password');
-        if(request('foto')) $datapegawai->handleUploadFoto();
+        if (request('password')) $datapegawai->password = request('password');
+        if (request('foto')) $datapegawai->handleUploadFoto();
         $datapegawai->save();
 
         return redirect('admin/data-pegawai');

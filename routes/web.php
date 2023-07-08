@@ -1,18 +1,27 @@
 <?php
 
 use App\Http\Controllers\Admin\AbsensiController as AdminAbsensiController;
+use App\Http\Controllers\Admin\Payroll\DaftarGajiController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\DataPegawaiController;
 use App\Http\Controllers\Admin\DinasController;
+use App\Http\Controllers\Admin\Payroll\FeeLemburController;
 use App\Http\Controllers\Admin\IzinCutiController as AdminIzinCutiController;
+use App\Http\Controllers\Admin\Payroll\JabatanController;
 use App\Http\Controllers\Admin\LemburController as AdminLemburController;
 use App\Http\Controllers\Admin\LokasiAbsensiController;
+use App\Http\Controllers\Admin\Payroll\BpjsController;
+use App\Http\Controllers\Admin\Payroll\PotonganTunjanganController;
+use App\Http\Controllers\Admin\Payroll\TestDataAbsensiController;
+use App\Http\Controllers\Admin\Payroll\TunjanganController;
 use App\Http\Controllers\Pegawai\AbsensiController as PegawaiAbsensiController;
 use App\Http\Controllers\Pegawai\DashboardController as PegawaiDashboardController;
 use App\Http\Controllers\Pegawai\DinasController as PegawaiDinasController;
 use App\Http\Controllers\Pegawai\IzinCutiController as PegawaiIzinCutiController;
 use App\Http\Controllers\Pegawai\LemburController as PegawaiLemburController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Pegawai\Payroll\GajiController;
+use App\Models\Payroll\TestDataAbsensi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +42,7 @@ Route::post('login', [AuthController::class, 'loginProses']);
 Route::get('logout', [AuthController::class, 'logout']);
 
 // ADMIN
-Route::prefix('admin')->middleware('auth:admin')->group(function(){
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('dashboard', [AdminDashboardController::class, 'dashboard']);
 
     Route::get('absensi', [AdminAbsensiController::class, 'index']);
@@ -54,7 +63,7 @@ Route::prefix('admin')->middleware('auth:admin')->group(function(){
     Route::get('data-pegawai{datapegawai}/edit', [DataPegawaiController::class, 'edit']);
     Route::put('data-pegawai{datapegawai}', [DataPegawaiController::class, 'update']);
     Route::delete('data-pegawai{datapegawai}', [DataPegawaiController::class, 'destroy']);
-    
+
 
     Route::get('izin-cuti', [AdminIzinCutiController::class, 'index']);
     Route::get('izin-cuti/{izincuti}', [AdminIzinCutiController::class, 'show']);
@@ -65,12 +74,51 @@ Route::prefix('admin')->middleware('auth:admin')->group(function(){
     Route::get('lembur', [AdminLemburController::class, 'index']);
     Route::get('lembur/{lembur}', [AdminLemburController::class, 'show']);
     Route::delete('lembur/{lembur}', [AdminLemburController::class, 'destroy']);
-    
+
     Route::get('dinas', [DinasController::class, 'index']);
+
+    // DAFTAR GAJI
+    Route::resource('daftar-gaji', DaftarGajiController::class);
+    Route::get('daftar-gaji/show/{id}', [DaftarGajiController::class, 'show'])->name('admin.daftar-gaji.show');
+
+    // SETTING JABATAN
+    Route::resource('jabatan', JabatanController::class);
+
+    // SETTING TIDAK MASUK KERJA
+    Route::resource('potongan-tunjangan%Tidak-Masuk', PotonganTunjanganController::class);
+    Route::get('potongan-tunjangan%Tidak-Masuk/{id}/edit', [PotonganTunjanganController::class, 'edit']);
+    Route::put('potongan-tunjangan%Tidak-Masuk/{id}', [PotonganTunjanganController::class, 'update']);
+    Route::delete('potongan-tunjangan%Tidak-Masuk/{id}', [PotonganTunjanganController::class, 'destroy']);
+
+    // SETTING POTONGAN BPJS
+    Route::resource('potongan-tunjangan%BPJS', BpjsController::class);
+    Route::get('potongan-tunjangan%BPJS/{id}/edit', [BpjsController::class, 'edit']);
+    Route::put('potongan-tunjangan%BPJS/{id}', [BpjsController::class, 'update']);
+    Route::delete('potongan-tunjangan%BPJS/{id}', [BpjsController::class, 'destroy']);
+
+    // SETTING FEE LEMBUR
+    Route::resource('potongan-tunjangan%Lembur', FeeLemburController::class);
+    Route::get('potongan-tunjangan%Lembur/{id}/edit', [FeeLemburController::class, 'edit']);
+    Route::put('potongan-tunjangan%Lembur/{id}', [FeeLemburController::class, 'update']);
+    Route::delete('potongan-tunjangan%Lembur/{id}', [FeeLemburController::class, 'destroy']);
+
+    // SETTING TUNJANGAN
+    Route::resource('potongan-tunjangan%Tunjangan', TunjanganController::class);
+    Route::get('potongan-tunjangan%Tunjangan/{id}/edit', [TunjanganController::class, 'edit']);
+    Route::put('potongan-tunjangan%Tunjangan/{id}', [TunjanganController::class, 'update']);
+    Route::delete('potongan-tunjangan%Tunjangan/{id}', [TunjanganController::class, 'destroy']);
+
+    // CETAK DATA
+    Route::get('cetak-data/daftar-gaji', [DaftarGajiController::class, 'cetak_data'])->name('admin.daftar-gaji.cetak-data');
+    Route::get('daftar-gaji/cetak-perorang/{id}', [DaftarGajiController::class, 'cetak_perorang'])->name('admin.daftar-gaji.cetak-perorang');
+
+    // TEST DATA ABSENSI
+    Route::resource('data-absensi', TestDataAbsensiController::class);
+    Route::put('data-absensi/{id}', [TestDataAbsensi::class, 'update']);
 });
 
 // PEGAWAI
-Route::prefix('pegawai')->middleware('auth:pegawai')->group(function(){
+Route::prefix('pegawai')->middleware('auth:pegawai')->group(function () {
     Route::get('dashboard', [PegawaiDashboardController::class, 'dashboard']);
 
     Route::get('absensi', [PegawaiAbsensiController::class, 'index']);
@@ -93,4 +141,12 @@ Route::prefix('pegawai')->middleware('auth:pegawai')->group(function(){
     Route::get('dinas', [PegawaiDinasController::class, 'index']);
     Route::get('dinas/create', [PegawaiDinasController::class, 'create']);
 
+    // DATA GAJI
+    Route::resource('data-gaji', GajiController::class);
+
+    // FILTER
+    Route::post('data-gaji/filter', [GajiController::class, 'filter']);
+
+    // CETAK GAJI
+    Route::get('gaji/cetak-perorang/{id}', [GajiController::class, 'cetak_perorang'])->name('pegawai.gaji.cetak-perorang');
 });

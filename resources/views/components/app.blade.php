@@ -9,11 +9,14 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <link rel="icon" type="image/png" href="{{url('public/assets')}}/loginassets/images/icons/company.png"/>
+    <link rel="icon" type="image/png" href="{{url('public/assets')}}/loginassets/images/icons/company.png" />
 
     <!-- Favicons -->
     <link href="{{url('public')}}/" rel="icon">
     <link href="{{url('public')}}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- page css -->
+    <link href="{{url('public')}}/assets/vendor/datatables/dataTables.bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -28,6 +31,7 @@
     <link href="{{url('public')}}/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="{{url('public')}}/assets/vendor/simple-datatables/style.css" rel="stylesheet">
 
+
     <!-- Template Main CSS File -->
     <link href="{{url('public')}}/assets/css/style.css" rel="stylesheet">
 
@@ -37,7 +41,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
 
-    
+
     @stack('style')
 
     <!-- =======================================================
@@ -56,7 +60,7 @@
     <!-- End Header -->
 
     <!-- ======= Sidebar ======= -->
-    <x-layout.sidebar :menu="$menu"/>
+    <x-layout.sidebar :menu="$menu" />
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -71,8 +75,7 @@
     <x-layout.footer />
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="{{url('public')}}/assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -87,6 +90,11 @@
     <!-- Template Main JS File -->
     <script src="{{url('public')}}/assets/js/main.js"></script>
 
+
+    <!-- page js -->
+    <script src="{{url('public')}}/assets/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{url('public')}}/assets/vendor/datatables/dataTables.bootstrap.min.js"></script>
+
     {{-- leaflet --}}
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -96,6 +104,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('script')
+
+    <script>
+        $('#data-table').DataTable();
+    </script>
 
 </body>
 

@@ -1,15 +1,13 @@
 @php
 function checkRouteActive($route)
 {
-    if (Route::current()->uri == $route) {
-        return 'collapsed';
-    }
+if (Route::current()->uri == $route) {
+return 'collapsed';
+}
 }
 @endphp
 
-
 <ul class="sidebar-nav" id="sidebar-nav">
-
     <li class="nav-item">
         <a class="nav-link {{checkRouteActive('admin/dashboard')}}" href="{{url('admin/dashboard')}}">
             <i class="bi bi-grid"></i>
@@ -18,15 +16,15 @@ function checkRouteActive($route)
     </li>
     <li class="nav-item">
         <a class="nav-link {{checkRouteActive('admin/data-pegawai')}} {{checkRouteActive('admin/data-pegawai{datapegawai}')}} " href="{{url('admin/data-pegawai')}}">
-          <i class="bi bi-person"></i>
-          <span>Data Pegawai</span>
+            <i class="bi bi-person"></i>
+            <span>Data Pegawai</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link {{checkRouteActive('admin/absensi')}} {{checkRouteActive('admin/lokasi_absensi')}}" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
             <i class="bi bi-layout-text-window-reverse"></i><span>Absensi</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav" class="nav-content collapse ">
             <li>
                 <a href="{{url('admin/absensi')}}">
                     <i class="bi bi-circle"></i><span>Absen Pegawai</span>
@@ -39,12 +37,12 @@ function checkRouteActive($route)
             </li>
         </ul>
     </li>
-    {{-- <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link {{checkRouteActive('admin/absensi')}}" href="{{url('admin/absensi')}}">
-            <i class="bi bi-calendar-check"></i>
-            <span>Absensi</span>
-        </a>
-    </li> --}}
+    <i class="bi bi-calendar-check"></i>
+    <span>Absensi</span>
+    </a>
+    </li> -->
     <li class="nav-item">
         <a class="nav-link {{checkRouteActive('admin/lembur')}}" href="{{url('admin/lembur')}}">
             <i class="bi bi-clock"></i>
@@ -62,5 +60,29 @@ function checkRouteActive($route)
             <i class="bi bi-globe2"></i>
             <span>Dinas</span>
         </a>
+    </li>
+    
+    <li class="nav-item">
+        <a class="nav-link {{checkRouteActive('admin/daftar-gaji')}}" href="{{url('admin/daftar-gaji')}}">
+            <i class="bi bi-wallet2"></i>
+            <span>Daftar Gaji</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{checkRouteActive('admin/jabatan')}} {{checkRouteActive('admin/potongan-tunjangan')}}" data-bs-target="#setting" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-gear-wide-connected"></i><span>Setting Payroll</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="setting" class="nav-content collapse ">
+            <li>
+                <a href="{{url('admin/jabatan')}}">
+                    <i class="bi bi-circle"></i><span>Jabatan + Gapok</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin/potongan-tunjangan%Tidak-Masuk')}}">
+                    <i class="bi bi-circle"></i><span>Potongan + Tunjangan</span>
+                </a>
+            </li>
+        </ul>
     </li>
 </ul>

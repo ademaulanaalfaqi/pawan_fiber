@@ -13,7 +13,8 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Detail Data Pegawai</h5> <hr>
+                        <h5 class="card-title">Detail Data Pegawai</h5>
+                        <hr>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
@@ -46,7 +47,7 @@
                                 </div>
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Jabatan</strong></label>
-                                    <p class="form-control-static col-md-8">{{ $datapegawai->jabatan }}</p>
+                                    <p class="form-control-static col-md-8">{{ $datapegawai->jabatan->nama_jabatan }}</p>
                                 </div>
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Status Kerja</strong></label>

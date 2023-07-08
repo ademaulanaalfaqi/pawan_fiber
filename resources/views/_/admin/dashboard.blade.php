@@ -1,7 +1,9 @@
 <x-template.admin title="Dashboard Admin">
     <div class="pagetitle">
-        <h1>Welcome Admin</h1>
+        <h5 class="m-0 font-weight-bold text-dark" style="font-size: 30px"> WELCOME, ADMIN</h5>
     </div>
+    <br>
+    <br>
     <div class="row">
         <div class="col-md-12">
             <div class="row">
@@ -38,8 +40,7 @@
                 <div class="col-xxl-4 col-md-6">
                     <div class="card info-card revenue-card">
                         <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
                                     <h6>Filter</h6>
@@ -69,8 +70,7 @@
                 <div class="col-xxl-4 col-xl-12">
                     <div class="card info-card customers-card">
                         <div class="filter">
-                            <a class="icon" href="#" data-bs-toggle="dropdown"><i
-                                    class="bi bi-three-dots"></i></a>
+                            <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                                 <li class="dropdown-header text-start">
                                     <h6>Filter</h6>
