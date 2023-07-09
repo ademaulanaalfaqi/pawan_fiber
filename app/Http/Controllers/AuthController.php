@@ -14,14 +14,14 @@ class AuthController extends Controller
     public function LoginProses(){
 		
         if (auth()->guard('pegawai')->attempt(['email' => request('email'), 'password' => request('password')])){
-            return redirect('pegawai/dashboard');
-        }
+            return redirect('pegawai/dashboard')->with('success','Login Berhasil');
+        } 
 
         if (auth()->guard('admin')->attempt(['email' => request('email'), 'password' => request('password')])){
-            return redirect('admin/dashboard');
+            return redirect('admin/dashboard')->with('success','Login Berhasil');
         }
 
-		return redirect('login');
+		return redirect('login')->with('danger', 'Login Gagal');
 	}
 
     public function logout(Request $request){

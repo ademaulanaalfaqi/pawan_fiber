@@ -1,5 +1,5 @@
 <x-template.pegawai title="Absensi Pegawai">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -16,7 +16,7 @@
                             <table class="table datatable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th data-orderable="true">No</th>
                                         <th>Aksi</th>
                                         <th>Nama</th>
                                         <th>Foto</th>
@@ -32,28 +32,28 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <a href="{{ url('pegawai/absensi', $absensi->id) }}" class="btn btn-dark">Detail</a>
+                                                    <a href="{{ url('pegawai/absensi', $absensi->id) }}" class="btn btn-dark m-1">Detail</a>
                                                 </div>
-                                                @if ($absensi->istirahat == 1 && $absensi->pulang == 1)
-                                                    <div class="btn-group">
+                                                <div class="btn-group">
+                                                    @if ($absensi->istirahat == 1 && $absensi->pulang == 1)
                                                         <form action="{{url('pegawai/absensi/istirahat', $absensi->id)}}" method="post">
                                                             @csrf
                                                             @method("PUT")
                                                             <input type="time" name="jam_istirahat" value="{{date('H:i:s')}}" hidden>
-                                                            <button class="btn btn-warning">Istirahat</button>
+                                                            <button class="btn btn-warning m-1">Istirahat</button>
                                                         </form>
-                                                    </div>
-                                                @endif
-                                                @if ($absensi->pulang == 1)
-                                                    <div class="btn-group">
+                                                    @endif
+                                                </div>
+                                                <div class="btn-group">
+                                                    @if ($absensi->pulang == 1)
                                                         <form action="{{url('pegawai/absensi/pulang', $absensi->id)}}" method="post">
                                                             @csrf
                                                             @method("PUT")
                                                             <input type="time" name="jam_pulang" value="{{date('H:i:s')}}" hidden>
-                                                            <button class="btn btn-warning">Pulang</button>
+                                                            <button class="btn btn-warning m-1">Pulang</button>
                                                         </form>
-                                                    </div>
-                                                @endif
+                                                    @endif
+                                                </div>
                                             </td>
                                             <td>{{$absensi->nama}}</td>
                                             <td>

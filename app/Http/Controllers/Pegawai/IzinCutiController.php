@@ -15,9 +15,15 @@ class IzinCutiController extends Controller
      */
     public function index()
     {
-        // $id_user = request()->user()->id;
-        // $data ['list_izin'] = IzinCuti::where('id_user', $id_user)->get();
-        $data ['list_izincuti'] = IzinCuti::all();
+        $jumlahJatahIzin = request()->user()->jatah_cuti;
+        $jumlahPengajuan = IzinCuti::where('id_user', request()->user()->id)
+            ->whereYear('created_at', date('Y'))
+            ->count();
+        $data ['sisa_jatah'] = $jumlahJatahIzin - $jumlahPengajuan;
+        
+        $id_user = request()->user()->id;
+        $data ['list_izincuti'] = IzinCuti::where('id_user', $id_user)->get();
+        // $data ['list_izincuti'] = IzinCuti::all();
         return view('_.pegawai.izin-cuti.index', $data);
     }
 
@@ -40,19 +46,28 @@ class IzinCutiController extends Controller
      */
     public function store(Request $request)
     {
-        $izincuti = new IzinCuti();
-        $izincuti->status = 1;
-        $izincuti->id_user = request()->user()->id;
-        $izincuti->tanggal_mulai = request('tanggal_mulai');
-        $izincuti->tanggal_selesai = request('tanggal_selesai');
-        $izincuti->tipe_izin = request('tipe_izin');
-        $izincuti->keterangan = request('keterangan');
-        $izincuti->foto = request('foto');
-        $izincuti->save();
+        $jumlahJatahIzin = request()->user()->jatah_cuti;
+        $jumlahPengajuan = IzinCuti::where('id_user', request()->user()->id)
+            ->whereYear('created_at', date('Y'))
+            ->count();
+        $jumlahTersisa = $jumlahJatahIzin - $jumlahPengajuan;
 
-        $izincuti->handleUploadFoto();
+        if ($jumlahTersisa >= 1) {
+            $izincuti = new IzinCuti();
+            $izincuti->status = 1;
+            $izincuti->id_user = request()->user()->id;
+            $izincuti->tanggal_mulai = request('tanggal_mulai');
+            $izincuti->tanggal_selesai = request('tanggal_selesai');
+            $izincuti->tipe_izin = request('tipe_izin');
+            $izincuti->keterangan = request('keterangan');
+            $izincuti->foto = request('foto');
+            $izincuti->handleUploadFoto();
+            $izincuti->save();
 
-        return redirect('pegawai/izin-cuti');
+            return redirect('pegawai/izin-cuti')->with('success', 'Pengajuan berhasil dikirim.');
+        } else {
+            return back()->with('danger', 'Jumlah jatah izin atau cuti Anda tidak mencukupi.');
+        }
     }
 
     /**

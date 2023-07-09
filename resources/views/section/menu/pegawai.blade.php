@@ -23,12 +23,6 @@ return 'collapsed';
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{checkRouteActive('pegawai/lembur')}}" href="{{url('pegawai/lembur')}}">
-            <i class="bi bi-clock"></i>
-            <span>Lembur</span>
-        </a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link {{checkRouteActive('pegawai/izin-cuti')}}" href="{{url('pegawai/izin-cuti')}}">
             <i class="bi bi-envelope"></i>
             <span>Izin dan Cuti</span>
@@ -36,7 +30,7 @@ return 'collapsed';
     </li>
     <li class="nav-item">
         <a class="nav-link {{checkRouteActive('pegawai/dinas')}}" href="{{url('pegawai/dinas')}}">
-            <i class="bi bi-globe2"></i>
+            <i class="bi bi-envelope"></i>
             <span>Dinas</span>
         </a>
     </li>

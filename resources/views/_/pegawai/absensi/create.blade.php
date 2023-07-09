@@ -1,5 +1,6 @@
 <x-template.pegawai title="Absensi Pegawai" onload="getLocation()">
-    <div class="container">
+    <div class="container-fluid">
+        <a href="{{url('pegawai/absensi')}}" class="btn btn-dark mb-3"><i class="bi bi-arrow-bar-left"></i> Kembali</a>
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -9,19 +10,24 @@
                             @csrf
                             <div class="row mb-3">
                                 <div class="col-sm-12">
-                                    <input class="form-control" type="file" name="foto" accept=".png, .jpg, .jpeg" required>
+                                    <input class="form-control" type="file" name="foto" accept="image/*" capture="camera" required>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="latitude" readonly hidden required >
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="longitude" readonly hidden required >
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="latitude" readonly required>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" name="longitude" readonly required>
-                                    </div>
+                                <div class="col-md-12">
+                                    <div id="map" style="height: 400px" hidden></div>
                                 </div>
                             </div>
                             <button class="btn btn-warning float-end"><i  class="fa fa-save"></i> Simpan</button>
@@ -31,7 +37,7 @@
             </div>
         </div>
     </div>
-
+    
     <script>
         var x = document.getElementById("demo");
 

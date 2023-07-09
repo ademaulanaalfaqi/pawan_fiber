@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\IzinCuti;
 use Illuminate\Support\Str;
+use App\Models\LokasiAbsensi;
 use App\Models\ModelAuthenticate;
 use App\Models\Payroll\Jabatan;
 use Illuminate\Database\Eloquent\Model;
@@ -34,7 +35,8 @@ class DataPegawai extends ModelAuthenticate
 		return $this->hasMany(IzinCuti::class, 'id_user');
 	}
 
-	function handleUploadFoto()
+
+    function handleUploadFoto()
 	{
 		$this->handleDelete();
 		if (request()->hasFile('foto')) {
@@ -59,4 +61,12 @@ class DataPegawai extends ModelAuthenticate
 			return true;
 		}
 	}
+
+	function DKeluarga() {
+		return $this->hasOne(DKeluarga::class, 'id_user');
+	}
+	function DAnak() {
+		return $this->hasMany(DAnak::class, 'id_user');
+	}
+	
 }

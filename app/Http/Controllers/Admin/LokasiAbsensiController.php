@@ -34,6 +34,7 @@ class LokasiAbsensiController extends Controller
         $lokasiabsensi->lokasi = request('lokasi');
         $lokasiabsensi->latitude = request('latitude');
         $lokasiabsensi->longitude = request('longitude');
+        $lokasiabsensi->radius = request('radius');
         $lokasiabsensi->save();
 
         return redirect('admin/lokasi_absensi');
@@ -65,6 +66,7 @@ class LokasiAbsensiController extends Controller
         $lokasiabsensi->lokasi = request('lokasi');
         $lokasiabsensi->latitude = request('latitude');
         $lokasiabsensi->longitude = request('longitude');
+        $lokasiabsensi->radius = request('radius');
         $lokasiabsensi->save();
 
         return redirect('admin/lokasi_absensi');
