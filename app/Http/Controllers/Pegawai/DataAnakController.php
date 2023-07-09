@@ -18,7 +18,7 @@ class DataAnakController extends Controller
         $dataanak->anak_ke = request('anak_ke');
         $dataanak->save();
         // return $dataanak;
-        return redirect('pegawai/profil')->with('success', 'Data berhasil Di Tambah');
+        return redirect('pegawai/profil')->with('success', 'Data berhasil Ditambah');
     }
 
     public function editkeluarga($datakeluarga){
@@ -39,7 +39,7 @@ class DataAnakController extends Controller
         $datakeluarga->pekerjaan = request('pekerjaan');
         $datakeluarga->kewarganegaraan = request('kewarganegaraan');
         $datakeluarga->save();
-        return redirect('pegawai/profil')->with('warning','Data Berhasil Di ubah');
+        return redirect('pegawai/profil')->with('success','Data Berhasil Diubah');
     }
 
 }

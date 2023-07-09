@@ -34,7 +34,7 @@ class DinasController extends Controller
         $dinas->longitude = request('longitude');
         $dinas->save();
         
-        return redirect('pegawai/dinas')->with('success', 'Data berhasil Di Tambah');
+        return redirect('pegawai/dinas')->with('success', 'Data berhasil Ditambah');
     }
 
     /**
@@ -47,7 +47,7 @@ class DinasController extends Controller
         return view('_.pegawai.dinas.show', $data);
     }
 
-    public function update(DInas $dinas)
+    public function update(Dinas $dinas)
     {
         $dinas->nama = request('nama');
         $dinas->tanggal_mulai = request('tanggal_mulai');
@@ -64,7 +64,7 @@ class DinasController extends Controller
     public function destroy(Dinas $dinas)
     {
         $dinas->delete();
-        return redirect('pegawai/dinas')->with('danger','Data Berhasil Dihapus');
+        return redirect('pegawai/dinas')->with('success','Data Berhasil Dihapus');
     }
 }
 

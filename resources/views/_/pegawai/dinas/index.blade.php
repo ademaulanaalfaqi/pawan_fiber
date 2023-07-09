@@ -9,7 +9,7 @@
                                 <h5 class="card-title">Dinas Pegawai</h5>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ url('pegawai/dinas/create') }}" class="btn btn-outline-success float-end mt-3"> <i class="bi bi-plus-lg"></i> Tambah</a>
+                                <a href="{{ url('pegawai/dinas/create') }}" class="btn btn-outline-success float-end mt-3"></i>Tambah</a>
                             </div>
                         </div>
                         <table class="table datatable">

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Payroll;
 
 use App\Http\Controllers\Controller;
-use App\Models\Payroll\Jabatan;
+use App\Models\Jabatan;
 
 class JabatanController extends Controller
 {
@@ -42,12 +42,12 @@ class JabatanController extends Controller
         $jabatan->gapok = request('gapok');
         $jabatan->save();
 
-        return redirect('admin/jabatan')->with('success', 'Data Jabatan Berhasil Ditambahkan');
+        return redirect('admin/jabatan')->with('success', 'Data Jabatan Berhasil Ditambah');
     }
 
     function destroy(jabatan $jabatan)
     {
         $jabatan->delete();
-        return redirect('admin/jabatan')->with('danger', 'Data Berhasil Dihapus');
+        return redirect('admin/jabatan')->with('success', 'Data Berhasil Dihapus');
     }
 }

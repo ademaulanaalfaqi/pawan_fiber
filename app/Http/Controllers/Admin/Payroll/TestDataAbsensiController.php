@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\DataPegawai;
 use App\Models\Payroll\DaftarGaji;
-use App\Models\Payroll\Jabatan;
+use App\Models\Jabatan;
 use App\Models\Payroll\TestDataAbsensi;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;

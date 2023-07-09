@@ -46,6 +46,6 @@ class BpjsController extends Controller
     {
         $bpjs = Bpjs::find($id);
         $bpjs->delete();
-        return redirect('admin/potongan-tunjangan%BPJS')->with('danger', 'Berhasil Dihapus');
+        return redirect('admin/potongan-tunjangan%BPJS')->with('success', 'Berhasil Dihapus');
     }
 }

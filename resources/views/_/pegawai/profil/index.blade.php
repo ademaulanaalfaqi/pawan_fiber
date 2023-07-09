@@ -14,7 +14,7 @@
                         <img style="border-radius: 50%" class="image" style=" display: flex; justify-content: center;"
                             src="{{ url('public', request()->user()->foto) }}" alt="Foto Profil">
                         <h2>{{ request()->user()->nama }}</h2>
-                        <h3 class="text-uppercase">{{ request()->user()->jabatan }}</h3>
+                        <h3 class="text-uppercase">{{ request()->user()->jabatan->nama_jabatan }}</h3>
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Jabatan</div>
-                                    <div class="col-lg-9 col-md-8">{{ request()->user()->jabatan }}</div>
+                                    <div class="col-lg-9 col-md-8">{{ request()->user()->jabatan->nama_jabatan }}</div>
                                 </div>
 
                                 <div class="row">

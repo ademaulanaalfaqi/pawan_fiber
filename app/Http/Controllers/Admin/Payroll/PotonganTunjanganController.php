@@ -39,13 +39,13 @@ class PotonganTunjanganController extends Controller
         $potongan->nominal = request('nominal');
         $potongan->save();
 
-        return redirect('admin/potongan-tunjangan%Tidak-Masuk')->with('success', 'Data Berhasil DiTambah');
+        return redirect('admin/potongan-tunjangan%Tidak-Masuk')->with('success', 'Data Berhasil Ditambah');
     }
 
     function destroy($id)
     {
         $potongan = Potongan::find($id);
         $potongan->delete();
-        return redirect('admin/potongan-tunjangan%Tidak-Masuk')->with('danger', 'Berhasil Dihapus');
+        return redirect('admin/potongan-tunjangan%Tidak-Masuk')->with('success', 'Berhasil Dihapus');
     }
 }

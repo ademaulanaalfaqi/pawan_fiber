@@ -19,13 +19,13 @@ class HariKerjaController extends Controller
         $harikerja = new HariKerja;
         $harikerja->hari_kerja = request('hari_kerja');
         $harikerja->save();
-        return back()->with('success', 'Data berhasil Di Tambah');
+        return back()->with('success', 'Data berhasil DiTambah');
     }
 
     public function destroy(HariKerja $hari_kerja)
     {
         $hari_kerja->delete();
-        return back()->with('danger', 'Data berhasil Di Hapus');
+        return back()->with('success', 'Data berhasil DiHapus');
        
     }
 }

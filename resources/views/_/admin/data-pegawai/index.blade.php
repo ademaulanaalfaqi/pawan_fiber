@@ -9,9 +9,8 @@
                                 <h5 class="card-title"><strong>// Data Pegawai</strong></h5>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" class="btn btn-primary float-end mt-3" data-bs-toggle="modal"
-                                    data-bs-target="#ModalTambah">
-                                    <i class="bi bi-plus-lg"></i> Tambah Data
+                                <button type="button" class="btn btn-outline-success float-end mt-3" data-bs-toggle="modal"
+                                    data-bs-target="#ModalTambah">Tambah Data
                                 </button>
                             </div>
                         </div>
@@ -35,13 +34,12 @@
                                             <td>
                                                 <div class="btn-group">
                                                     <a href="{{ url('admin/data-pegawai', $datapegawai->id) }}"
-                                                        class="btn btn-dark"><i class="bi bi-info"
-                                                            data-feather="check-square"></i> Lihat
+                                                        class="btn btn-dark">Lihat
                                                     </a>
 
                                                     <a href="{{ url('admin/data-pegawai', $datapegawai->id) }}/edit"
-                                                        class="btn btn-warning"><i class="bi bi-pencil-square"
-                                                            data-feather="check-square"></i> Edit</a>
+                                                        class="btn btn-warning" data-bs-toggle="modal"
+                                                        data-bs-target="#ModalEdit{{$datapegawai->id}}">Edit</a>
                                                     <x-button.delete
                                                         url="{{ url('admin/data-pegawai', $datapegawai->id) }}" />
                                                 </div>
@@ -59,7 +57,7 @@
 
 
                                             <td>{{ $datapegawai->divisi }}</td>
-                                            <td>{{ $datapegawai->jabatan }}</td>
+                                            <td>{{ $datapegawai->jabatan->nama_jabatan }}</td>
 
                                             <td>{{ date('d F Y', strtotime($datapegawai->tanggal_masuk)) }}</td>
                                         </tr>
@@ -106,15 +104,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 mt-3">
-                            <div class="form-group">
-                                <label>Alamat</label>
-                                <div class="form-floating">
-                                    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" name="alamat"
-                                        style="height: 100px"></textarea>
-                                </div>
-                            </div>
-                        </div>
                         <div class="row  mt-3">
                             <div class="col-md-3">
                                 <label for="">Divisi</label>
@@ -122,7 +111,7 @@
                                     <select class="custom-select custom-select-lg mb-3 form-control" name="divisi" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
                                         @foreach ($list_divisi as $divisi)
-                                            <option class="text-uppercase">
+                                            <option value="{{$divisi->divisi}}">
                                                 {{ $divisi->divisi }}</option>
                                         @endforeach
                                     </select>
@@ -131,7 +120,7 @@
                             <div class="col-md-3">
                                 <label>Jabatan</label>
                                 <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3 form-control" name="jabatan" required>
+                                    <select class="custom-select custom-select-lg mb-3 form-control" name="id_jabatan" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
                                         @foreach ($list_jabatan as $jabatan)
                                         <option value="{{ $jabatan->id }}">
@@ -147,7 +136,7 @@
                                     <select class="custom-select custom-select-lg mb-3 form-control" name="status_kerja" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
                                         @foreach ($list_statuskerja as $statuskerja)
-                                            <option class="text-uppercase">
+                                            <option value="{{ $statuskerja->statuskerja }}">
                                                 {{ $statuskerja->statuskerja }}</option>
                                         @endforeach
                                     </select>
@@ -156,10 +145,10 @@
                             <div class="col-md-3">
                                 <label for="">Hari Kerja</label>
                                 <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3 form-control" name="jam_kerja" required>
+                                    <select class="custom-select custom-select-lg mb-3 form-control" name="hari_kerja" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
                                         @foreach ($list_harikerja as $harikerja)
-                                            <option class="text-uppercase">
+                                            <option value="{{ $harikerja->hari_kerja }}">
                                                 {{ $harikerja->hari_kerja }}</option>
                                         @endforeach
                                     </select>
@@ -260,23 +249,30 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tambah Data Pegawai</h5>
+                    <h5 class="modal-title">Edit Data Pegawai</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ url('admin/data-pegawai') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ url('admin/data-pegawai', $datapegawai->id) }}" method="post" enctype="multipart/form-data">
+                        @method('PUT')
                         @csrf
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">NIK</label>
                                     <input type="text" class="form-control" value="{{$datapegawai->nik}}" name="nik" required>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="">Nama Lengkap</label>
                                     <input type="text" class="form-control" value="{{$datapegawai->nama}}" name="nama" required>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="">Alamat</label>
+                                    <input type="text" class="form-control" value="{{$datapegawai->alamat}}" name="alamat" required>
                                 </div>
                             </div>
                         </div>
@@ -287,32 +283,23 @@
                                     <select class="custom-select custom-select-lg mb-3 form-control" value="{{$datapegawai->divisi}}" name="divisi" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
                                         <option selected>{{ $datapegawai->divisi }}</option>
-                                        <option value="1">HRD & GA</option>
-                                        <option value="2">Finance</option>
-                                        <option value="3">Sales & marketing</option>
-                                        <option value="4">Network & Technical</option>
+                                        @foreach ($list_divisi as $divisi)
+                                            <option value="{{ $divisi->divisi }}">
+                                                {{ $divisi->divisi }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <label>Jabatan</label>
                                 <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3 form-control" value="{{$datapegawai->jabatan}}" name="jabatan" required>
+                                    <select class="custom-select custom-select-lg mb-3 form-control" name="id_jabatan" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
-                                        <option selected>{{ $datapegawai->jabatan }}</option>
-                                        <option value="1">HRD GA</option>
-                                        <option value="2">Kepala Cabang</option>
-                                        <option value="3">Kepala Teknisi</option>
-                                        <option value="4">Leader Finance AP</option>
-                                        <option value="5">Leader Finance AR</option>
-                                        <option value="6">Leader Sales</option>
-                                        <option value="7">Leader IKR</option>
-                                        <option value="8">Costumer Service</option>
-                                        <option value="9">Staff Accounting</option>
-                                        <option value="10">Staff Inventory</option>
-                                        <option value="11">Staff Finance</option>
-                                        <option value="12">Staff Teknisi</option>
-                                        <option value="13">Office Boy</option>
+                                        <option value="{{$datapegawai->jabatan->id}}" selected>{{ $datapegawai->jabatan->nama_jabatan }}</option>
+                                        @foreach ($list_jabatan as $jabatan)
+                                            <option value="{{$jabatan->id}}" class="text-uppercase">
+                                                {{ $jabatan->nama_jabatan }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -322,21 +309,23 @@
                                     <select class="custom-select custom-select-lg mb-3 form-control" value="{{$datapegawai->status_kerja}}" name="status_kerja" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
                                         <option selected>{{ $datapegawai->status_kerja }}</option>
-                                        <option value="1">Tetap </option>
-                                        <option value="2">Kontrak</option>
-                                        <option value="3">Magang/Training</option>
-                                        <option value="4">Freelance/Partime</option>
+                                        @foreach ($list_statuskerja as $statuskerja)
+                                            <option value="{{ $statuskerja->statuskerja }}</">
+                                                {{ $statuskerja->statuskerja }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <label for="">Jam Kerja</label>
                                 <div class="form-group">
-                                    <select class="custom-select custom-select-lg mb-3 form-control" value="{{$datapegawai->jam_kerja}}" name="jam_kerja" required>
+                                    <select class="custom-select custom-select-lg mb-3 form-control" value="{{$datapegawai->hari_kerja}}" name="hari_kerja" required>
                                         <option selected> ------ Pilih Opsi ------ </option>
-                                        <option selected>{{ $datapegawai->jam_kerja }}</option>
-                                        <option value="1">Senin - Jumat </option>
-                                        <option value="2">Senin - Sabtu</option>
+                                        <option selected>{{ $datapegawai->hari_kerja }}</option>
+                                        @foreach ($list_harikerja as $harikerja)
+                                            <option {{ $harikerja->hari_kerja }}>
+                                                {{ $harikerja->hari_kerja }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -349,12 +338,6 @@
                                         <span class="input-group-text">$</span>
                                         <input class="form-control" type="text" value="{{$datapegawai->gaji_pokok}}" name="gaji_pokok" required>
                                         <span class="input-group-text">.00</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label for="">Alamat</label>
-                                        <input type="text" class="form-control" value="{{$datapegawai->alamat}}" name="alamat" required>
                                     </div>
                                 </div>
                             </div>
@@ -405,7 +388,7 @@
                                 <div class="form-group">
                                     <label for="">Foto</label>
                                     <div class="input-group">
-                                        <input type="file" class="form-control" name="foto" accept=".jpeg, .jpg, .png" required>
+                                        <input type="file" class="form-control" name="foto" accept=".jpeg, .jpg, .png">
                                     </div>
                                 </div>
                             </div>
@@ -423,7 +406,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="">Password</label>
-                                    <input type="password" class="form-control" name="password" required>
+                                    <input type="password" class="form-control" name="password">
                                 </div>
                             </div>
                         </div>

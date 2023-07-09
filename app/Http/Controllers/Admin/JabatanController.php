@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Divisi;
 use App\Models\Jabatan;
+use App\Models\HariKerja;
+use App\Models\StatusKerja;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,12 +21,12 @@ class JabatanController extends Controller
         $jabatan = new Jabatan;
         $jabatan->jabatan = request('jabatan');
         $jabatan->save();
-        return back()->with('danger', 'Data berhasil Di Hapus');         
+        return back()->with('success', 'Data berhasil Ditambah');         
     }   
 
     public function destroy(Jabatan $jabatan)
     {
         $jabatan->delete();
-        return back()->with('danger', 'Data berhasil Di Hapus'); 
+        return back()->with('success', 'Data berhasil DiHapus'); 
     }
 }

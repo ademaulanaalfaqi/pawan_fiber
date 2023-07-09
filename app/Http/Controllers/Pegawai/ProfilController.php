@@ -26,6 +26,6 @@ class ProfilController extends Controller
         if(request('foto')) $datapegawai->handleUploadFoto();
         $datapegawai->save();
 
-        return redirect('pegawai/profil');
+        return redirect('pegawai/profil')->with('success', 'Data Berhasil Diubah');
     }
 }

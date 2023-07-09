@@ -19,12 +19,12 @@ class StatusKerjaController extends Controller
         $statuskerja = new StatusKerja;
         $statuskerja->statuskerja = request('statuskerja');
         $statuskerja->save();
-        return back()->with('success', 'Data berhasil Di Tambah'); 
+        return back()->with('success', 'Data berhasil DiTambah'); 
     }
 
     public function destroy(StatusKerja $statuskerja)
     {
         $statuskerja->delete();
-        return back()->with('danger', 'Data berhasil Di Hapus'); 
+        return back()->with('success', 'Data berhasil DiHapus'); 
     }
 }

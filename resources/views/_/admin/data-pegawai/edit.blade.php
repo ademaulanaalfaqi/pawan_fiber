@@ -59,7 +59,7 @@
                                         <select class="custom-select custom-select-lg mb-3 form-control"
                                             value="{{ $datapegawai->jabatan }}" name="jabatan" required>
                                             <option selected> ------ Pilih Opsi ------ </option>
-                                            <option selected>{{ $datapegawai->jabatan }}</option>
+                                            <option selected>{{ $datapegawai->jabatan->nama_jabatan }}</option>
                                             @foreach ($list_jabatan as $jabatan)
                                                 <option class="text-uppercase">
                                                     {{ $jabatan->jabatan }}</option>

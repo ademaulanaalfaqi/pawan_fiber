@@ -13,7 +13,6 @@ use App\Models\StatusKerja;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Models\Payroll\Jabatan as JabatanPayroll;
 use App\Models\DAnak;
 
 class DataPegawaiController extends Controller
@@ -22,8 +21,7 @@ class DataPegawaiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {              
-        $data['list_jabatan'] = JabatanPayroll::all();             
+    {            
         $data ['list_izin'] = IzinCuti::all();
         $data ['list_harikerja'] = HariKerja::all();
         $data ['list_statuskerja'] = StatusKerja::all();
@@ -46,18 +44,18 @@ class DataPegawaiController extends Controller
         $datapegawai->status_kerja = request('status_kerja');
         $datapegawai->jatah_cuti = request('jatah_cuti');
         $datapegawai->tanggal_berakhir = request('tanggal_berakhir');
-        $datapegawai->jam_kerja = request('jam_kerja');
+        $datapegawai->hari_kerja = request('hari_kerja');
         $datapegawai->tanggal_lahir = request('tanggal_lahir');
         $datapegawai->jenis_kelamin = request('jenis_kelamin');
         $datapegawai->email = request('email');
         $datapegawai->divisi = request('divisi');
-        $datapegawai->id_jabatan = request('jabatan');
+        $datapegawai->id_jabatan = request('id_jabatan');
         $datapegawai->tanggal_masuk = request('tanggal_masuk');
         $datapegawai->password = request('password');
         $datapegawai->handleUploadFoto();
         $datapegawai->save();
 
-        return redirect('admin/data-pegawai')->with('success', 'Data berhasil ditambah');
+        return redirect('admin/data-pegawai')->with('success', 'Data Berhasil Ditambah');
     }
 
     /**
@@ -85,7 +83,9 @@ class DataPegawaiController extends Controller
    
     public function update(DataPegawai $datapegawai)
     {
+        // dd(request()->all());
         // $datapegawai->id = request()->id;
+        $datapegawai->id_jabatan = request('id_jabatan');
         $datapegawai->nik = request('nik');
         $datapegawai->nama = request('nama');
         $datapegawai->alamat = request('alamat');
@@ -94,18 +94,16 @@ class DataPegawaiController extends Controller
         $datapegawai->status_kerja = request('status_kerja');
         $datapegawai->jatah_cuti = request('jatah_cuti');
         $datapegawai->tanggal_berakhir = request('tanggal_berakhir');
-        $datapegawai->jam_kerja = request('jam_kerja');
+        $datapegawai->hari_kerja = request('hari_kerja');
         $datapegawai->tanggal_lahir = request('tanggal_lahir');
         $datapegawai->jenis_kelamin = request('jenis_kelamin');
         $datapegawai->email = request('email');
         $datapegawai->divisi = request('divisi');
-        $datapegawai->jabatan = request('jabatan');
         $datapegawai->tanggal_masuk = request('tanggal_masuk');
         if (request('password')) $datapegawai->password = request('password');
         if (request('foto')) $datapegawai->handleUploadFoto();
         $datapegawai->save();
-
-        return redirect('admin/data-pegawai')->with('warning', 'Data berhasil diubah');
+        return redirect('admin/data-pegawai')->with('success', 'Data Berhasil Diubah');
     }
 
     /**
@@ -115,7 +113,7 @@ class DataPegawaiController extends Controller
     {
         $datapegawai->delete();
         // return $datapegawai;
-        return redirect('admin/data-pegawai')->with('Danger', 'Data berhasil di hapus');
+        return redirect('admin/data-pegawai')->with('success', 'Data Berhasil Dihapus');
     }
 
     public function cetak_pdf(DataPegawai $datapegawai)

@@ -46,6 +46,6 @@ class FeeLemburController extends Controller
     {
         $lembur = Lembur::find($id);
         $lembur->delete();
-        return redirect('admin/potongan-tunjangan%Lembur')->with('danger', 'Berhasil Dihapus');
+        return redirect('admin/potongan-tunjangan%Lembur')->with('success', 'Berhasil Dihapus');
     }
 }

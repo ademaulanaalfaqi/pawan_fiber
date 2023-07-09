@@ -26,12 +26,12 @@ class DivisiController extends Controller
         $divisi = new Divisi;
         $divisi->divisi = request('divisi');
         $divisi->save();
-        return back()->with('success', 'Data berhasil Di Tambah'); 
+        return back()->with('success', 'Data berhasil DiTambah'); 
     }
 
     public function destroy(Divisi $divisi)
     {
         $divisi->delete();
-        return back()->with('danger', 'Data berhasil Hapus');
+        return back()->with('success', 'Data berhasilHapus');
     }
 }

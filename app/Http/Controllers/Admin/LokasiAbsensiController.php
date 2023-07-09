@@ -37,7 +37,7 @@ class LokasiAbsensiController extends Controller
         $lokasiabsensi->radius = request('radius');
         $lokasiabsensi->save();
 
-        return redirect('admin/lokasi_absensi');
+        return redirect('admin/lokasi_absensi')->with('success', 'Data Berhasil Ditambah');
     }
 
     /**
@@ -69,7 +69,7 @@ class LokasiAbsensiController extends Controller
         $lokasiabsensi->radius = request('radius');
         $lokasiabsensi->save();
 
-        return redirect('admin/lokasi_absensi');
+        return redirect('admin/lokasi_absensi')->with('success', 'Data Berhasil Diubah');
     }
 
     /**

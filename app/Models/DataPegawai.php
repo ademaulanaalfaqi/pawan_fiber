@@ -6,7 +6,7 @@ use App\Models\IzinCuti;
 use Illuminate\Support\Str;
 use App\Models\LokasiAbsensi;
 use App\Models\ModelAuthenticate;
-use App\Models\Payroll\Jabatan;
+use App\Models\Jabatan;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 

@@ -47,7 +47,7 @@ class IzinCutiController extends Controller
 
         $izincuti->handleUploadFoto();
 
-        return redirect('admin/izin');
+        return redirect('admin/izin')->with('success', 'Data Berhasil Ditambah');
     }
     
 

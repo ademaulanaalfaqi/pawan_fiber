@@ -34,7 +34,7 @@ class DataProfilPegawaiController extends Controller
         $datakeluarga->kewarganegaraan = request('kewarganegaraan');
         // return $datakeluarga;
         $datakeluarga->save();
-        return back()->with('success', 'Data berhasil Di Tambah');
+        return back()->with('success', 'Data berhasil DiTambah');
     }
 
     public function edit(DataPegawai $datapegawai){
@@ -54,7 +54,7 @@ class DataProfilPegawaiController extends Controller
         // return $datapegawai;
         $datapegawai->save();
 
-        return redirect('pegawai/profil')->with('warning', 'Data berhasil Di Ubah');
+        return redirect('pegawai/profil')->with('success', 'Data berhasil Diubah');
     }
 
     

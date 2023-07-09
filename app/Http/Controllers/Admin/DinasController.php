@@ -61,6 +61,6 @@ class DinasController extends Controller
     function destroy(Dinas $dinas){
         $dinas->delete();
         // return $dinas;
-        return redirect('admin/dinas');
+        return redirect('admin/dinas')->with('success', 'Data Berhasil Dihapus');
     }
 }

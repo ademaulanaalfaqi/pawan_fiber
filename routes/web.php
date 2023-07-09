@@ -5,8 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Models\Payroll\TestDataAbsensi;
 use App\Http\Controllers\Admin\Payroll\DaftarGajiController;
 use App\Http\Controllers\Admin\Payroll\FeeLemburController;
-use App\Http\Controllers\Admin\Payroll\JabatanController as JabatanPayrollController;
 use App\Http\Controllers\Admin\Payroll\BpjsController;
+use App\Http\Controllers\Admin\Payroll\JabatanController as JabatanPayrollController;
 use App\Http\Controllers\Admin\Payroll\PotonganTunjanganController;
 use App\Http\Controllers\Admin\Payroll\TestDataAbsensiController;
 use App\Http\Controllers\Admin\Payroll\TunjanganController;
@@ -85,6 +85,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::delete('lembur/{lembur}', [AdminLemburController::class, 'destroy']);
 
     Route::get('dinas', [DinasController::class, 'index']);
+    Route::get('dinas/{dinas}', [DinasController::class, 'show']);
+    Route::delete('dinas/{dinas}', [DinasController::class, 'destroy']);
 
     // DAFTAR GAJI
     Route::resource('daftar-gaji', DaftarGajiController::class);

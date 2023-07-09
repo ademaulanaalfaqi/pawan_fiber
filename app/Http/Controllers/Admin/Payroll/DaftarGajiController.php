@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DataPegawai;
 use App\Models\Payroll\Bpjs;
 use App\Models\Payroll\DaftarGaji;
-use App\Models\Payroll\Jabatan;
+use App\Models\Jabatan;
 use App\Models\Payroll\Lembur;
 use App\Models\Payroll\Potongan;
 use App\Models\Payroll\TestDataAbsensi;

@@ -48,6 +48,6 @@ class TunjanganController extends Controller
     {
         $tunjangan = Tunjangan::find($id);
         $tunjangan->delete();
-        return redirect('admin/potongan-tunjangan%Tunjangan')->with('danger', 'Berhasil Dihapus');
+        return redirect('admin/potongan-tunjangan%Tunjangan')->with('success', 'Berhasil Dihapus');
     }
 }

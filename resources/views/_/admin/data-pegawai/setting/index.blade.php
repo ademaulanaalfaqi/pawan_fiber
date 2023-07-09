@@ -239,7 +239,7 @@
                                                     <x-button.delete
                                                         url="{{ url('admin/data-pegawai/setting/jabatan', $jabatan->id) }}" />
                                                 </td>
-                                                <td class="text-uppercase">{{ $jabatan->jabatan }}</td>
+                                                <td class="text-uppercase">{{ $jabatan->nama_jabatan }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
