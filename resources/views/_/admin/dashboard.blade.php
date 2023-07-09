@@ -1,7 +1,9 @@
 <x-template.admin title="Dashboard Admin">
     <div class="pagetitle">
-        <h1>Welcome {{request()->user()->nama}}</h1>
+    <h1>Welcome {{request()->user()->nama}}</h1>
     </div>
+    <br>
+    <br>
     <div class="row">
         <div class="col-md-12">
             <div class="row">

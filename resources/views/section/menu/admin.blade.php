@@ -7,9 +7,7 @@
     }
 @endphp
 
-
 <ul class="sidebar-nav" id="sidebar-nav">
-
     <li class="nav-item">
         <a class="nav-link {{ checkRouteActive('admin/dashboard') }}" href="{{ url('admin/dashboard') }}">
             <i class="bi bi-grid"></i>
@@ -29,7 +27,7 @@
             <i class="bi bi-layout-text-window-reverse"></i><span>Absensi</span><i
                 class="bi bi-chevron-down ms-auto"></i>
         </a>
-        <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <ul id="tables-nav" class="nav-content collapse ">
             <li>
                 <a href="{{ url('admin/absensi') }}">
                     <i class="bi bi-circle"></i><span>Absen Pegawai</span>
@@ -53,6 +51,29 @@
             <i class="bi bi-globe2"></i>
             <span>Dinas</span>
         </a>
+    </li>    
+    <li class="nav-item">
+        <a class="nav-link {{checkRouteActive('admin/daftar-gaji')}}" href="{{url('admin/daftar-gaji')}}">
+            <i class="bi bi-wallet2"></i>
+            <span>Daftar Gaji</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{checkRouteActive('admin/jabatan')}} {{checkRouteActive('admin/potongan-tunjangan')}}" data-bs-target="#setting" data-bs-toggle="collapse" href="#">
+            <i class="bi bi-gear-wide-connected"></i><span>Setting Payroll</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="setting" class="nav-content collapse ">
+            <li>
+                <a href="{{url('admin/jabatan')}}">
+                    <i class="bi bi-circle"></i><span>Jabatan + Gapok</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{url('admin/potongan-tunjangan%Tidak-Masuk')}}">
+                    <i class="bi bi-circle"></i><span>Potongan + Tunjangan</span>
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="nav-item">
         <a class="nav-link {{ checkRouteActive('admin/data-pegawai/setting') }}"

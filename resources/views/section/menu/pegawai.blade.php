@@ -1,9 +1,9 @@
 @php
 function checkRouteActive($route)
 {
-    if (Route::current()->uri == $route) {
-        return 'collapsed';
-    }
+if (Route::current()->uri == $route) {
+return 'collapsed';
+}
 }
 @endphp
 
@@ -32,6 +32,12 @@ function checkRouteActive($route)
         <a class="nav-link {{checkRouteActive('pegawai/dinas')}}" href="{{url('pegawai/dinas')}}">
             <i class="bi bi-envelope"></i>
             <span>Dinas</span>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{checkRouteActive('pegawai/data-gaji')}}" href="{{url('pegawai/data-gaji')}}">
+            <i class="bi bi-clipboard2-data"></i>
+            <span>Data Gaji</span>
         </a>
     </li>
 </ul>

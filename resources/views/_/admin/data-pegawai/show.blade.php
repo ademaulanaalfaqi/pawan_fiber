@@ -54,9 +54,8 @@
                                     <p class="form-control-static col-md-8">{{ $datapegawai->divisi }}</p>
                                 </div>
                                 <div class="row">
-                                    <label for=""
-                                        class="control-label col-md-4"><strong>Jabatan</strong></label>
-                                    <p class="form-control-static col-md-8">{{ $datapegawai->jabatan }}</p>
+                                    <label for="" class="control-label col-md-4"><strong>Jabatan</strong></label>
+                                    <p class="form-control-static col-md-8">{{ $datapegawai->jabatan->nama_jabatan }}</p>
                                 </div>
                                 <div class="row">
                                     <label for="" class="control-label col-md-4"><strong>Status
